@@ -28,33 +28,36 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    // /**
+    //  * Get the attributes that should be cast.
+    //  *
+    //  * @return array<string, string>
+    //  */
+    // protected function casts(): array
+    // {
+    //     return [
+    //         'email_verified_at' => 'datetime',
+    //         'password' => 'hashed',
+    //     ];
+    // }
 
     public function wallet()
     {
         return $this->morphOne(Wallet::class, 'owner');
-    } 
+    }
     public function referralCodes()
     {
         return $this->morphMany(ReferralCode::class, 'owner');
     }
-
+    public function redeemedReferralCodes()
+    {
+        return $this->hasMany(ReferralCode::class, 'redeemed_by');
+    }
     public function apiTokens()
     {
         return $this->morphMany(ApiToken::class, 'tokenable');

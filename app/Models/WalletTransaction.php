@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WalletTransaction extends Model
 {
-    protected $fillable = ['type', 'amount', 'reason', 'meta'];
-
+    protected $fillable = ['type', 'amount', 'reason','wallet_id'];
     protected $casts = [
         'meta' => 'array',
     ];

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReferralCode extends Model
 {
-    protected $fillable = ['code', 'redeemed_by', 'redeemed_at'];
-
+    protected $fillable = ['code', 'owner_id', 'owner_type', 'redeemed_by','redeemed_at'];
     public function owner()
     {
         return $this->morphTo();

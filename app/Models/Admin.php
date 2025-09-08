@@ -42,4 +42,8 @@ class Admin extends Model
             ->flatten()
             ->contains('slug', $slug);
     }
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
 }
