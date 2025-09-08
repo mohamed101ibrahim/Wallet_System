@@ -45,4 +45,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function wallet()
+    {
+        return $this->morphOne(Wallet::class, 'owner');
+    } 
+    public function referralCodes()
+    {
+        return $this->morphMany(ReferralCode::class, 'owner');
+    }
+
+    public function apiTokens()
+    {
+        return $this->morphMany(ApiToken::class, 'tokenable');
+    }
+
+    public function requests()
+    {
+        return $this->morphMany(WalletRequest::class, 'requested_by');
+    }
 }
